@@ -3,24 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/app.css}" />
 </head>
 <body>
+
+<style>
+    html,body{
+        margin:0;
+        height:120%;
+        font-family: 'Josefin Sans', sans-serif;
+
+    }
+    .header{
+        position:relative;
+        overflow:hidden;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: flex-start;
+        height:50vw;
+        min-height:400px;
+        max-height:550px;
+        min-width:300px;
+        color:#eee;
+    }
+    .header:after{
+        content:"";
+        width:100%;
+        height:40%;
+        position:absolute;
+        bottom:0;
+        left:0;
+        z-index:-1;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(27,32,48,1) 100%);
+    }
+    .header:before{
+        content:"";
+        width:100%;
+        height:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translateZ(0) scale(1.0, 1.0);
+        transform: translateZ(0);
+        background:#1B2030 url(http://clipart-library.com/images/8czr7pz5i.jpg) top center no-repeat;
+        background-size:cover;
+        background-attachment:fixed;
+        animation: grow 60s  linear 10ms infinite;
+        transition:all 0.2s ease-in-out;
+        z-index:-2
+    }
+    .header a{
+        color:#eee
+    }
+    .logo{
+        border:2px solid #fff;
+        border-radius:3px;
+        text-decoration:none;
+        display:inline-block;
+        margin:20px;
+        padding:5px 10px;
+        font-weight:600;
+        font-size:1.2em;
+        box-sizing:border-box
+    }
+    .sides, .info{
+        flex: 0 0 auto;
+        width:50%
+    }
+    .info{
+        width:100%;
+        padding:15% 10% 0 10%;
+        text-align:center;
+        text-shadow:0 2px 3px rgba(0,0,0,0.2)
+    }
+    .author{
+        display:inline-block;
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        background:url(https://scontent.fdet1-1.fna.fbcdn.net/v/t31.0-8/12719201_10152982684094058_1321647961427325081_o.jpg?_nc_cat=110&_nc_ht=scontent.fdet1-1.fna&oh=f7fdf12c44e08f9a2bcd8af5b30bf538&oe=5D1064DB) center no-repeat;
+        background-size:cover;
+        box-shadow:0 2px 3px rgba(0,0,0,0.3);
+        margin-bottom:3px
+    }
+    .info h4, .meta{
+        font-size:0.7em
+    }
+    .meta{
+        font-style:italic;
+    }
+    @keyframes grow{
+        0% { transform:scale(1)}
+        50% { transform:scale(1.2)}
+    }
+    .content{
+        padding:5% 10%;
+        text-align:justify
+    }
+
+
+</style>
+
+<div class="header">
+    <div class="sides">
+        <a href="#" class="logo">Photo Book</a>
+    </div>
+    <div class="sides"> <a href="#" class="menu">-</a></div>
+    <div class="info">
+        <h4><a th:href="@{/allPictures}">All Photos</a></h4>
+        <h1>A few of my favorite pictures!!!</h1>
+        <div class="meta">
+            <a  href="https://www.facebook.com/profile.php?id=30317172" target="_b" class="author"></a><br>
+            By <a href="https://www.facebook.com/profile.php?id=30317172" target="_b">James Nodws</a> on May 30, 2017
+        </div>
+    </div>
+</div>
+<section class="content">
+</section>
+
 <div class="title">
-    <h1>Welcome to Jamie's Photo Album</h1>
 
-    <a href="cambodia.html">
-        <img src="../homePhotos/CambodiaHome.jpg" alt="Home Page Picture" style="width: 300px;height: 300px; border: aqua;">
+    <a href="cambodia">
+        <img src="../homePhotos/Cambodia.jpg" alt="Home Page Picture"
+             style="width: 300px;height: 300px; border: aqua;">
     </a>
-    <a href="japan.html">
-        <img src="../homePhotos/JapanHome.jpg" alt="Home Page Picture" style="width: 300px;height: 300px; border: aqua;">
+    <a href="japan">
+        <img src="../homePhotos/Japan.jpg" alt="Home Page Picture"
+             style="width: 300px;height: 300px; border: aqua;">
     </a>
-    <a href="taiwan.html">
-        <img src="../homePhotos/TaiwanHome.jpg" alt="Home Page Picture" style="width: 300px;height: 300px; border: aqua;">
+    <a th:href="@{/taiwan}">
+        <img src="../homePhotos/Taiwan.jpg" alt="Home Page Picture"
+             style="width: 300px;height: 300px; border: aqua;">
     </a>
-    <a href="thailand.html">
-        <img src="../homePhotos/ThailandHome.jpg" alt="Home Page Picture" style="width: 300px;height: 300px; border: aqua;">
+    <a href="thailand">
+        <img src="../homePhotos/Thailand.jpg" alt="Home Page Picture"
+             style="width: 300px;height: 300px; border: aqua;">
     </a>
 
+
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

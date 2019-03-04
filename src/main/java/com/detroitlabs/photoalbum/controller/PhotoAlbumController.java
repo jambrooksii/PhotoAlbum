@@ -1,5 +1,6 @@
 package com.detroitlabs.photoalbum.controller;
 
+import com.detroitlabs.photoalbum.data.ListRepository;
 import com.detroitlabs.photoalbum.data.PhotoAlbumRepository;
 import com.detroitlabs.photoalbum.model.PhotoAlbum;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -18,35 +19,60 @@ public class PhotoAlbumController {
     @Autowired
     private PhotoAlbumRepository photoAlbumRepository;
 
+    @Autowired
+    private ListRepository listRepository;
+
     @RequestMapping("/")
     public String displayAllPhotos(ModelMap modelMap) {
-        List<PhotoAlbum> allPhotos = photoAlbumRepository.getCountry_LIST();
-        modelMap.put("allPhotos", allPhotos);
+        List<PhotoAlbum> photo = photoAlbumRepository.getCountry_LIST();
+        modelMap.put("photo", photo);
         return "home";
     }
 
-    @RequestMapping("/japan/{countryName}")
-    public String findPhotos(@PathVariable String countryName, ModelMap modelMap){
-        List<PhotoAlbum> photoAlbum = photoAlbumRepository.findByCountry(countryName);
-        modelMap.put("photoAlbum", photoAlbum);
-        return "japan";
-
-    }
-
-    @RequestMapping("/photos/{name}")
-    public String photoDetails(@PathVariable String name, ModelMap modelMap){
+    @RequestMapping("/photo/{name}")
+    public String gifDetails(@PathVariable String name, ModelMap modelMap) {
         PhotoAlbum photo = photoAlbumRepository.findByName(name);
         modelMap.put("photo", photo);
+        return "home";
+
+    }
+
+    @RequestMapping("/japan")
+    public String photoDetails(Integer countryID, ModelMap modelMap) {
+        List<PhotoAlbum> photos = photoAlbumRepository.findJapanPhotos();
+        modelMap.put("photos", photos);
         return "japan";
 
     }
 
-//    @RequestMapping("/taiwan/{countryName}")
-//    public String findPhotos(@PathVariable String countryName, ModelMap modelMap){
-//        List<PhotoAlbum> photoAlbum = photoAlbumRepository.findByCountry(countryName);
-//        modelMap.put("photoAlbum", photoAlbum);
-//        return "taiwan";
-//
-//    }
+    @RequestMapping("/taiwan")
+    public String photoDetailsTaiwan(ModelMap modelMap) {
+        List<PhotoAlbum> photos = photoAlbumRepository.findTaiwanPhotos();
+        modelMap.put("photos", photos);
+        return "taiwan";
 
+    }
+
+    @RequestMapping("/cambodia")
+    public String photoDetailsCambodia(ModelMap modelMap) {
+        List<PhotoAlbum> photos = photoAlbumRepository.findCambodiaPhotos();
+        modelMap.put("photos", photos);
+        return "cambodia";
+    }
+
+    @RequestMapping("/thailand")
+    public String photoDetailsThailand(ModelMap modelMap) {
+        List<PhotoAlbum> photos = photoAlbumRepository.findThailandPhotos();
+        modelMap.put("photos", photos);
+        return "thailand";
+    }
+
+    @RequestMapping("/allPictures")
+    public String allPictures(ModelMap modelMap) {
+        List<PhotoAlbum> photos = photoAlbumRepository.getCountry_LIST();
+        modelMap.put("photos", photos);
+        return "allPictures";
+    }
 }
+
+

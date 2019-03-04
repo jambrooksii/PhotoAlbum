@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<div class="chip"></div>
+<div class="row">
+
+
+    <div th:each="photo : ${photos}" class="col s15 l4">
+
+        <a th:href="@{|/photo/${photo.pictureName}|}">
+
+            <img th:src="@{'/photos/' + ${photo.pictureName} + '.jpg'}"/>
+
+            <a href="#" class="mark favorite"></a>
+        </a>
+    </div>
+</div>
 
 </body>
 </html>

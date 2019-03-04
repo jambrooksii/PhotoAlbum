@@ -3,47 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/app.css}"/>
+
+    <h1>Japan Photos!!!</h1>
 </head>
 <body>
-<div class="gifs container">
-    <!--
-        In the div element, replace the 'category name' text
-        with the value of the 'name' field of the 'category'
-        object from the model map
-    -->
-    <div class="chip"></div>
-    <div class="row">
 
-        <!--
-            Repeat the div element for each object in the 'gifs'
-            collection of the model map. Each object in the loop
-            should be named 'gif'
-        -->
-        <div th:each="allPhotos : ${photoAlbum}" class="col s15 l4">
-            <!--
-                    In the a tag, make the href attribute point to
-                    the GIF detail page using the 'name' field of
-                    the 'gif' object from the loop above
-             -->
-            <a th:href="@{|/photo/${photo.name}|}">
-                <!--
-                    In the img tag, make the src attribute point
-                    to the static GIF image, according to the 'name'
-                    field of the 'gif' object from the loop above
-                -->
-                <img th:src="@{'/photos/' + ${photoAlbum.countryName} + '.gif'}"/>
-                <!--
-                    In the a tag, make the class attribute have the value
-                    of 'mark favorite' or 'unmark favorite' according to
-                    the 'favorite' field of the 'gif' object from the
-                    loop above
-                -->
-                <a href="#" class="mark favorite"></a>
-            </a>
-        </div>
+
+<h1><span class="l">Ja</span><span class="o">p</span>
+    <span class="v">a</span><span class="e">n</span></h1>
+
+
+<div class="chip"></div>
+<div class="row">
+
+
+    <div th:each="photo : ${photos}" class="col s15 l4">
+
+        <a th:href="@{|/photo/${photo.pictureName}|}">
+
+            <img th:src="@{'/photos/' + ${photo.pictureName} + '.jpg'}"/>
+
+            <a href="#" class="mark favorite"></a>
+        </a>
     </div>
 </div>
-
 
 </body>
 </html>

@@ -11,52 +11,56 @@ import java.util.List;
 
 @Component
 public class PhotoAlbumRepository {
+    ListRepository listRepository;
 
     private static final List<PhotoAlbum> Country_LIST = Arrays.asList(
-            new PhotoAlbum("ankorCambodia", "Cambodia"),
-            new PhotoAlbum("babyCambodia", "Cambodia"),
-            new PhotoAlbum("babyJapan", "Japan"),
-            new PhotoAlbum("boatThailand", "Thailand"),
-            new PhotoAlbum("bucketsThailand", "Thailand"),
-            new PhotoAlbum("candyJapan", "Japan"),
-            new PhotoAlbum("clubTaiwan", "Taiwan"),
-            new PhotoAlbum("cowsCambodia", "Cambodia"),
-            new PhotoAlbum("crewTaiwan", "Cambodia"),
-            new PhotoAlbum("devonCambodia", "Cambodia"),
-            new PhotoAlbum("devonJapan", "Japan"),
-            new PhotoAlbum("familyTaiwan", "Taiwan"),
-            new PhotoAlbum("fieldCambodia", "Cambodia"),
-            new PhotoAlbum("gongCambodia", "Cambodia"),
-            new PhotoAlbum("jamdevCambodia", "Cambodia"),
-            new PhotoAlbum("jamesbondThailand", "Thailand"),
-            new PhotoAlbum("jamieCambodia", "Cambodia"),
-            new PhotoAlbum("kayakThailand", "Thailand"),
-            new PhotoAlbum("kidsCambodia", "Cambodia"),
-            new PhotoAlbum("motosThailand", "Thailand"),
-            new PhotoAlbum("motoTaiwan", "Taiwan"),
-            new PhotoAlbum("musicJapan", "Japan"),
-            new PhotoAlbum("partyTaiwan", "Taiwan"),
-            new PhotoAlbum("riceCakeJapan", "Japan"),
-            new PhotoAlbum("skyJapan", "Japan"),
-            new PhotoAlbum("statueCambodia", "Cambodia"),
-            new PhotoAlbum("statueThailand", "Thailand"),
-            new PhotoAlbum("tempelTaiwan", "Taiwan"),
-            new PhotoAlbum("tempelThailand", "Thailand"),
-            new PhotoAlbum("treeTaiwan", "Taiwan"),
-            new PhotoAlbum("waterThailand", "Thailand"));
+            new PhotoAlbum("ankorCambodia", "Cambodia", 3),
+            new PhotoAlbum("babyCambodia", "Cambodia", 3),
+            new PhotoAlbum("babyJapan", "Japan", 1),
+            new PhotoAlbum("boatThailand", "Thailand", 2),
+            new PhotoAlbum("bucketsThailand", "Thailand", 2),
+            new PhotoAlbum("candyJapan", "Japan", 1),
+            new PhotoAlbum("clubTaiwan", "Taiwan", 4),
+            new PhotoAlbum("cowsCambodia", "Cambodia", 3),
+            new PhotoAlbum("crewTaiwan", "Cambodia", 3),
+            new PhotoAlbum("devonCambodia", "Cambodia", 3),
+            new PhotoAlbum("devonJapan", "Japan", 1),
+            new PhotoAlbum("familyTaiwan", "Taiwan", 4),
+            new PhotoAlbum("fieldCambodia", "Cambodia", 3),
+            new PhotoAlbum("gongCambodia", "Cambodia", 3),
+            new PhotoAlbum("jamdevCambodia", "Cambodia", 3),
+            new PhotoAlbum("jamesbondThailand", "Thailand", 2),
+            new PhotoAlbum("jamieCambodia", "Cambodia", 3),
+            new PhotoAlbum("kayakThailand", "Thailand", 2),
+            new PhotoAlbum("kidsCambodia", "Cambodia", 3),
+            new PhotoAlbum("motosThailand", "Thailand", 2),
+            new PhotoAlbum("motoTaiwan", "Taiwan", 4),
+            new PhotoAlbum("musicJapan", "Japan", 1),
+            new PhotoAlbum("partyTaiwan", "Taiwan", 4),
+            new PhotoAlbum("riceCakeJapan", "Japan", 1),
+            new PhotoAlbum("skyJapan", "Japan", 1),
+            new PhotoAlbum("statueCambodia", "Cambodia", 3),
+            new PhotoAlbum("statueThailand", "Thailand", 2),
+            new PhotoAlbum("tempelTaiwan", "Taiwan", 4),
+            new PhotoAlbum("tempelThailand", "Thailand", 2),
+            new PhotoAlbum("treeTaiwan", "Taiwan", 4),
+            new PhotoAlbum("waterThailand", "Thailand", 2));
 
     public List<PhotoAlbum> getCountry_LIST() {
         return Country_LIST;
     }
 
-    public List<PhotoAlbum> findByCountry(@PathVariable String countryName) {
-        List<PhotoAlbum> pickByCountry = new ArrayList<>();
+    public List<PhotoAlbum> findCountry(int countryID) {
+        List<PhotoAlbum> photoAlbums = new ArrayList<>();
         for (PhotoAlbum photoAlbum : Country_LIST) {
-            if (photoAlbum.getCountryName() == countryName) {
-                pickByCountry.add(photoAlbum);
+            if (photoAlbum.getCountryID() == countryID) {
+                photoAlbums.add(photoAlbum);
+
             }
+
         }
-        return pickByCountry;
+        return photoAlbums;
+
     }
 
     public PhotoAlbum findByName(@PathVariable String name) {
@@ -76,6 +80,47 @@ public class PhotoAlbumRepository {
 
         }
         return null;
+    }
+
+    public List findJapanPhotos(){
+        List<PhotoAlbum> japanPhotos = new ArrayList<>();
+        for(PhotoAlbum photoAlbum: Country_LIST){
+            if(photoAlbum.getCountryID() == 1){
+                japanPhotos.add(photoAlbum);
+            }
+        }
+        return japanPhotos;
+    }
+
+
+    public List findTaiwanPhotos(){
+        List<PhotoAlbum> taiwanPhotos = new ArrayList<>();
+        for(PhotoAlbum photoAlbum: Country_LIST){
+            if(photoAlbum.getCountryID() == 4){
+                taiwanPhotos.add(photoAlbum);
+            }
+        }
+        return taiwanPhotos;
+    }
+
+    public List findThailandPhotos(){
+        List<PhotoAlbum> thailandPhotos = new ArrayList<>();
+        for(PhotoAlbum photoAlbum: Country_LIST){
+            if(photoAlbum.getCountryID() == 2){
+                thailandPhotos.add(photoAlbum);
+            }
+        }
+        return thailandPhotos;
+    }
+
+    public List findCambodiaPhotos(){
+        List<PhotoAlbum> cambodiaPhotos = new ArrayList<>();
+        for(PhotoAlbum photoAlbum: Country_LIST){
+            if(photoAlbum.getCountryID() == 3){
+                cambodiaPhotos.add(photoAlbum);
+            }
+        }
+        return cambodiaPhotos;
     }
 
 
