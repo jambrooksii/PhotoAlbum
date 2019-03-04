@@ -68,5 +68,17 @@ public class PhotoAlbumRepository {
         return null;
     }
 
+    public PhotoAlbum findCountry(@PathVariable String counryName) {
+        for (PhotoAlbum photoAlbum : Country_LIST) {
+            if (photoAlbum.getCountryName() == counryName) {
+                return photoAlbum;
+            }
+
+        }
+        return null;
+    }
+
+
+
 
 }
